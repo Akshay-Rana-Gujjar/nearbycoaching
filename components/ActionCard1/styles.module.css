@@ -1,0 +1,31 @@
+.action_card__item_container {
+  border-radius: 6px;
+  overflow: hidden;
+  width: 200px;
+  background-color: white;
+  border: 1px solid #EDEDED;
+}
+
+.action_card__image_container {
+  padding: 10px;
+  background-color: #00836c;
+}
+
+.action_card__item_info_container {
+  padding: 5px;
+}
+.action_card__item_name {
+  font-weight: 500;
+}
+
+.action_card__course_type {
+  background-color: rgba(245, 95, 152, 0.2);
+}
+
+.action_card__course_start_by {
+  background: #fff4cb;
+}
+
+.action_card__item_cta{
+    background-color: var(--primary);
+}

@@ -1,0 +1,10 @@
+.categories_container{
+    display: flex;
+    gap: 20px;
+    max-width: 100vw;
+    overflow-x: scroll;
+}
+
+.categories_container::-webkit-scrollbar{
+    display: none;
+}

@@ -1,0 +1,4 @@
+.action_cards_container{
+    max-width: 100vw;
+    overflow-x: scroll;
+}

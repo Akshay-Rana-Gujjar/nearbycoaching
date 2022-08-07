@@ -1,0 +1,31 @@
+.subscription__container, .subscription__wrapper{
+    border-radius: 10px;
+}
+
+.subscription__wrapper{
+    background-color: white;
+}
+.subscription_background{
+    background-color: #FFD233;
+    transform: rotateZ(-55deg) translateY(-65%);
+    z-index: 0;
+    height: 200px;
+    
+}
+.subscription__head{
+    z-index: 10;
+}
+.subscription_cta{
+    border-color: var(--primary);
+    color: var(--primary);
+}
+.subscription_cta:hover{
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.subscription__email_input:focus{
+    outline: none;
+    box-shadow: 0 0 0 2px #FFD233 ;
+    border-color: #FFD233;
+}
