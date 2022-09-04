@@ -4,27 +4,41 @@ import { IoStar } from "react-icons/io5";
 import { FaRupeeSign } from "react-icons/fa";
 import styles from "./styles.module.css";
 
-export default function ActionCard1() {
+export default function ActionCard1({
+  title = "IDBI Bank Executive by Safalta",
+  courseBy = "Safalta",
+  classType = "Video",
+  startDate = "18 Aug",
+  price= "999",
+  imageSrc =  "https://www.whoistheownerof.com/wp-content/uploads/2018/02/Owner-of-IDBI-Bank-India-Logo-Wiki-profile-1.jpg",
+  backdropColor
+}) {
   return (
     <div>
       <div className={styles["action_card__item_container"]}>
-        <div className={styles["action_card__image_container"]}>
+        <div className={styles["action_card__image_container"]} style={{background: backdropColor}} >
           <img
-            src="https://www.whoistheownerof.com/wp-content/uploads/2018/02/Owner-of-IDBI-Bank-India-Logo-Wiki-profile-1.jpg"
+            src={imageSrc}
             alt="aasd"
             width={"100%"}
             height={"100%"}
             loader={({ src }) => src}
-            layout="fixed"
+            layout="cover"
           />
         </div>
         <div className={styles["action_card__item_info_container"]}>
-          <div className={`${styles["action_card__item_name"]} text-truncate`}>
-            IDBI Bank Executive by Safalta
+          <div
+            className={`${styles["action_card__item_name"]} text-truncate small`}
+          >
+            {title}
           </div>
           <div className={"d-flex justify-content-between"}>
-            <div className={styles["action_card__item_author"]}>By Safalta</div>
-            <div className={styles["action_card__item_rating"]}>
+            <div
+              className={`small text-muted text-truncate ${styles["action_card__item_author"]}`}
+            >
+              By {courseBy}
+            </div>
+            <div className={`d-flex ${styles["action_card__item_rating"]}`}>
               <IoStar color="#FFD233" />
               <IoStar color="#FFD233" />
               <IoStar color="#FFD233" />
@@ -38,13 +52,13 @@ export default function ActionCard1() {
             <div
               className={`${styles["action_card__course_type"]} rounded-pill px-1 small`}
             >
-              Video
+              {classType}
             </div>
             <div className={styles["action_card__item_seprator"]}>•</div>
             <div
               className={`${styles["action_card__course_start_by"]} rounded-pill px-1 small`}
             >
-              Start on 18 Aug
+              Start on {startDate}
             </div>
           </div>
         </div>
@@ -53,7 +67,7 @@ export default function ActionCard1() {
           className={`${styles["action_card__item_cta"]} p-2 text-white text-center d-flex align-items-center justify-content-center`}
         >
           Enroll now for &nbsp; <FaRupeeSign size={12} />
-          999
+          {price}
         </div>
       </div>
     </div>

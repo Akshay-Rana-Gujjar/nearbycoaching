@@ -17,7 +17,7 @@ export default function CategoryItem({
       >
         {iconElement || <BankIcon />}
       </div>
-      <div>{name}</div>
+      <div  className="small">{name}</div>
     </div>
   );
 }

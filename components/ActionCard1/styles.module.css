@@ -1,7 +1,7 @@
 .action_card__item_container {
   border-radius: 6px;
   overflow: hidden;
-  width: 200px;
+  width: var(--action-card-width);
   background-color: white;
   border: 1px solid #EDEDED;
 }
@@ -9,6 +9,11 @@
 .action_card__image_container {
   padding: 10px;
   background-color: #00836c;
+  height: calc(var(--action-card-width)/var(--action-card-ratio));
+}
+
+.action_card__image_container  img{
+  object-fit: contain;
 }
 
 .action_card__item_info_container {

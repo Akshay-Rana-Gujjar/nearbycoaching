@@ -1,8 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
 :root {
   --bg-color: #fffff3;
-  --primary: #2D3857;
-  
+  --primary: #2d3857;
+  --action-card-width: 160px;
+  --action-card-ratio: 1.75;
 }
 html,
 body {
@@ -19,4 +20,5 @@ a {
 
 * {
   box-sizing: border-box;
+  font-size: 12px;
 }
