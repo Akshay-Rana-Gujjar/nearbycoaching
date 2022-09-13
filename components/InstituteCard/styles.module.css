@@ -1,0 +1,7 @@
+.institute_container{
+    border-radius: 6px;
+}
+
+.institute_cta{
+    background-color: var(--primary);
+}

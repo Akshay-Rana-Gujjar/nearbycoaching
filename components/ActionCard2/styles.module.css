@@ -1,0 +1,7 @@
+.action_card_2_container{
+    border-radius: 6px;
+}
+
+.action_card_2_item_cta{
+    background-color: var(--primary);
+}
