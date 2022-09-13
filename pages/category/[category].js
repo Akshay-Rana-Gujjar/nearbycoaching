@@ -12,7 +12,7 @@ export default function Category() {
 
   return (
     <div className="container">
-      <div className="d-flex">
+      <div className="d-flex py-2">
         <div
           onClick={() => {
             router.back();
