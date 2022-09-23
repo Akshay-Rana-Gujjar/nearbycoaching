@@ -11,7 +11,7 @@ export default function Category() {
   const { category } = router.query;
 
   return (
-    <div className="container">
+    <div className="container px-4">
       <div className="d-flex py-2">
         <div
           onClick={() => {
