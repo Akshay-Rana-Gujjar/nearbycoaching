@@ -11,7 +11,8 @@ export default function ActionCardsContainer() {
       startDate: "22 Oct",
       price: "3795",
       imageSrc:"https://i0.wp.com/zeevector.com/wp-content/uploads/2021/02/RBI-Emblem-PNG.png?resize=600%2C609&ssl=1",
-    backdropColor: "#eedfc0"
+    backdropColor: "#eedfc0",
+    permalink:"/course/rbi-assistant-pre-and-main-video-course"
     },
     {
       title: "SBI PO - Foundation Batch 2021 By Safalta.Com",
@@ -20,7 +21,8 @@ export default function ActionCardsContainer() {
       startDate: "24 Nov",
       price: "2999",
       imageSrc: "https://i0.wp.com/www.atpos.in/wp-content/uploads/2019/08/2017-Design-Stack-new-logo-design-State-Bank-of-India.png?fit=520%2C321&ssl=1",
-      backdropColor: "#290070"
+      backdropColor: "#290070",
+      permalink: "/course/sbi-po-foundation-batch-2021"
     },
     {
       title: "SBI SO PRE VIDEO COURSE",
@@ -29,7 +31,8 @@ export default function ActionCardsContainer() {
       startDate: "22 Oct",
       price: "2749",
       imageSrc:"https://i0.wp.com/www.atpos.in/wp-content/uploads/2019/08/2017-Design-Stack-new-logo-design-State-Bank-of-India.png?fit=520%2C321&ssl=1",
-      backdropColor: "#290070"
+      backdropColor: "#290070",
+      permalink: "/course/sbi-po-pre-video-course"
     },
     {
       title: "IBPS RRB ASSISTANT PRE VIDEO COURSE",
@@ -38,7 +41,8 @@ export default function ActionCardsContainer() {
       startDate: "22 Oct",
       price: "3795",
       imageSrc: "https://cracku.in/latest-govt-jobs/wp-content/uploads/2019/06/IBPS-LOGO.jpg",
-      backdropColor: "#fff"
+      backdropColor: "#fff",
+      permalink: "/course/ibps-rrb-assistant-pre-video-course"
     },
   ];
 
