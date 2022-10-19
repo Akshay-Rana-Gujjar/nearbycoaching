@@ -122,7 +122,7 @@ export default function Course() {
                 <hr />
                 <div>
                     <div className="fs-3">Course Overview</div>
-                    <div className="mb-2">This course includes Live classes, notes, doubt sessions, practice sessions, Mock Tests, and much more.It covers basic concepts as well as in-depth knowledge of all subjects required to pass the exam.</div>
+                    <div className="mb-2">This course includes Live classes, notes, doubt sessions, practice sessions, Mock Tests, and much more. It covers basic concepts as well as in-depth knowledge of all subjects required to pass the exam.</div>
                     <div className="table-responsive">
 
                         <table className="table table-bordered">
@@ -209,7 +209,7 @@ export default function Course() {
                         </div>
                         <div className="">
                             <div className="mx-3 my-1 card py-3 px-2 shadow-sm">
-                                <div className="fw-bold fs-2">Pratiksha Ma'am</div>
+                                <div className="fw-bold fs-2">Pratiksha Ma&apos;am</div>
                                 <div className="fs-5 fw-bold">Faculty of Faculty  Awareness</div>
                                 <div className="fs-5 text-muted">Experience: More than 8 years</div>
                             </div>
