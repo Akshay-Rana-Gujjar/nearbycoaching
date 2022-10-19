@@ -5,14 +5,24 @@ import styles from "./styles.module.css";
 export default function ActionCardsContainer() {
   const data = [
     {
+      title: "IDBI Bank Executive by Safalta",
+      courseBy: "Safalta",
+      classType: "Video",
+      startDate: "22 Oct",
+      price: "999",
+      imageSrc:"https://www.whoistheownerof.com/wp-content/uploads/2018/02/Owner-of-IDBI-Bank-India-Logo-Wiki-profile-1.jpg",
+      backdropColor: "#00836c",
+      permalink:"/course/idbi-bank-executive-by-safalta"
+    },
+    {
       title: "RBI ASSISTANT PRE And MAIN VIDEO COURSE",
       courseBy: "Make My Exam",
       classType: "Video",
       startDate: "22 Oct",
       price: "3795",
       imageSrc:"https://i0.wp.com/zeevector.com/wp-content/uploads/2021/02/RBI-Emblem-PNG.png?resize=600%2C609&ssl=1",
-    backdropColor: "#eedfc0",
-    permalink:"/course/rbi-assistant-pre-and-main-video-course"
+      backdropColor: "#eedfc0",
+      permalink:"/course/rbi-assistant-pre-and-main-video-course"
     },
     {
       title: "SBI PO - Foundation Batch 2021 By Safalta.Com",
@@ -48,7 +58,6 @@ export default function ActionCardsContainer() {
 
   return (
     <div className={` ${styles.action_cards_container} d-flex gap-2 mb-3`}>
-      <ActionCard1 />
       {data.map(_=><ActionCard1 key={_.title}  {..._}/>)}
     </div>
   );

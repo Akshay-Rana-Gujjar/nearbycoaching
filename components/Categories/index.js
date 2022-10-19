@@ -11,8 +11,8 @@ export default function Categories() {
           <img
             className="img-fluid1"
             alt="a"
-            style={{ width: "40px", height: "40px", objectFit: "cover" }}
-            src="https://freepngimge.com/wp-content/uploads/2020/02/20200224_171210.png"
+            style={{ width: "40px", height: "40px", objectFit: "contain" }}
+            src="https://www.pngkit.com/png/full/249-2495326_ssc-constable-ssc-cgl.png"
           />
         }
         name={"SSC"}
