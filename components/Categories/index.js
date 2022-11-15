@@ -3,6 +3,7 @@ import CategoryItem from "./CategoryItem";
 import styles from "./styles.module.css";
 
 export default function Categories() {
+
   return (
     <div className={styles.categories_container}>
       <CategoryItem />
@@ -26,7 +27,20 @@ export default function Categories() {
             alt="s"
           />
         }
+        name="UPSC"
       />
+      <CategoryItem />
+      <CategoryItem />
+      <CategoryItem />
+      <CategoryItem />
+      <CategoryItem />
+      <CategoryItem />
+      <CategoryItem />
+      <CategoryItem />
+      <CategoryItem />
+      <CategoryItem />
+      <CategoryItem />
+      <CategoryItem />
       <CategoryItem />
       <CategoryItem />
       <CategoryItem />

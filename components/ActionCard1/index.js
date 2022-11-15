@@ -4,6 +4,7 @@ import { IoStar } from "react-icons/io5";
 import { FaRupeeSign } from "react-icons/fa";
 import styles from "./styles.module.css";
 import Link from "next/link";
+import useIsMobile from '../../hooks/useIsMobile';
 
 export default function ActionCard1({
   title = "IDBI Bank Executive by Safalta",
@@ -15,11 +16,13 @@ export default function ActionCard1({
   backdropColor,
   permalink = "/course/xyz",
 }) {
+  const isMobile = useIsMobile();
+
   return (
     <div>
       <Link href={permalink}>
         <a>
-          <div className={styles["action_card__item_container"]}>
+          <div className={styles["action_card__item_container"]} style={!isMobile && {"--action-card-width": "200px"} || {}} >
             <div
               className={styles["action_card__image_container"]}
               style={{ background: backdropColor }}

@@ -18,7 +18,12 @@ a {
   text-decoration: none!important;
 }
 
-* {
-  box-sizing: border-box;
-  font-size: 12px;
+
+@media (max-width: 500px){
+
+  * {
+    box-sizing: border-box;
+    font-size: 12px;
+  }
+  
 }

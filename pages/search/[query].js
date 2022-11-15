@@ -28,7 +28,7 @@ const subcategory = {
 
 export default function Category({ isMobile }) {
   const router = useRouter();
-  const { category } = router.query;
+  const { query } = router.query;
 
 
   return (
@@ -43,7 +43,7 @@ export default function Category({ isMobile }) {
           >
             <IoArrowBackOutline size={24} />
           </div>}
-          <div className={(isMobile ? "fs-4" : "fs-6 border-start border-2 border-primary ps-3") + " text-uppercase fw-bold"}>{category}</div>
+          <div className={(isMobile ? "fs-4" : "fs-6 border-start border-2 border-primary ps-3") + " text-uppercase fw-bold"}>{query}</div>
         </div>
         <div className={!isMobile && "container mb-4"}>
           <div className="bg-white shadow-sm p-2 rounded mb-3 ">

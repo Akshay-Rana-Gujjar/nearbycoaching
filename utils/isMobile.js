@@ -1,0 +1,1 @@
+export default typeof window !== 'undefined' && matchMedia("(max-width: 500px)").matches;

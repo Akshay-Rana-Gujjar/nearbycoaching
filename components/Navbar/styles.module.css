@@ -1,4 +1,27 @@
-.navbarBellIcon {
-  border-radius: 10px;
-  border-color: var(--primary);
+/* .navbarMobContainer{
+  display: flex;
+} */
+
+
+.categoryOverlay{
+  display: none;
+  transform: translateX(-20vw);
+}
+
+.categoryOverlayParent:hover .categoryOverlay{
+  display: block;
+}
+
+
+/* =========== Mobile css =========== */
+@media (max-width: 500px) {
+  /* .navbarMobContainer{
+    display: flex;
+  } */
+
+  .navbarBellIcon {
+    border-radius: 10px;
+    border-color: var(--primary);
+  }
+
 }

@@ -1,0 +1,16 @@
+.category_overlay_container{
+    /* z-index: 10000; */
+    transform: translateX(-20vw)
+}
+
+.category_overlay_main{
+    /* width: 10vw; */
+    height: 50vh;
+    overflow-y: auto;
+}
+
+.category_overlay_secondary{
+    width: 50vw;
+    height: 50vh;
+    overflow-y: auto;
+}

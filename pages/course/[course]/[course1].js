@@ -1,38 +1,22 @@
 import { useRouter } from "next/router";
-import { IoArrowBackOutline } from "react-icons/io5";
 import { BsFillBarChartFill } from "react-icons/bs";
-import ActionCard2 from "../../components/ActionCard2";
-import FAQContainer from "../../components/FAQContainer";
-import InstituteCard from "../../components/InstituteCard";
-import Subscription from "../../components/Subscription";
-import Categories from "../../components/Categories";
-import Navbar from "../../components/Navbar";
-import styles from './styles.module.css';
 import { FaRupeeSign } from "react-icons/fa";
+import { IoArrowBackOutline } from "react-icons/io5";
+import ActionCard2 from "../../../components/ActionCard2";
+import Categories from "../../../components/Categories";
+import FAQContainer from "../../../components/FAQContainer";
+import InstituteCard from "../../../components/InstituteCard";
+import Navbar from "../../../components/Navbar";
+import Subscription from "../../../components/Subscription";
+import styles from '../styles.module.css';
 
-const subcategory = {
-  banking: [
-    { name: "Canara Bank PO" },
-    { name: "IBPS Clerk" },
-    { name: "IBPS PO" },
-    { name: "IBPS RRB" },
-    { name: "IBPS SO" },
-    { name: "IDBI Bank" },
-    { name: "RBI Grade B" },
-    { name: "SBI Clerk" }
-  ],
-  ssc: [],
-  upsc: [],
+export default function SubCatgeory({isMobile}) {
+    const router = useRouter();
+    const city = router.query["course"];
+    const { course1 } = router.query;
 
-}
-
-export default function Category({ isMobile }) {
-  const router = useRouter();
-  const { category } = router.query;
-
-
-  return (
-    <>
+    return (
+        <>
       {!isMobile && <Navbar />}
       <div className="container px-4">
         <div className="d-flex py-2">
@@ -43,7 +27,7 @@ export default function Category({ isMobile }) {
           >
             <IoArrowBackOutline size={24} />
           </div>}
-          <div className={(isMobile ? "fs-4" : "fs-6 border-start border-2 border-primary ps-3") + " text-uppercase fw-bold"}>{category}</div>
+          <div className={(isMobile ? "fs-4" : "fs-6 border-start border-2 border-primary ps-3") + " text-uppercase fw-bold"}>Test</div>
         </div>
         <div className={!isMobile && "container mb-4"}>
           <div className="bg-white shadow-sm p-2 rounded mb-3 ">
@@ -168,5 +152,5 @@ export default function Category({ isMobile }) {
         </div>
       </div>
     </>
-  );
+    );
 }
