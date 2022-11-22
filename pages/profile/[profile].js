@@ -824,7 +824,7 @@ export default function Profile({ isMobile }) {
                     <div className={(isMobile ? "h4":"h6" )+" mb-3  "}>Available Facilities</div>
                     <div className="d-flex flex-wrap gap-3 mb-4">
                         {
-                            data.facilities.map((f, i) => f.available && <span key={i} class="badge rounded-pill bg-light text-dark fs-6 border">{f.name}</span>)
+                            data.facilities.map((f, i) => f.available && <span key={i} className="badge rounded-pill bg-light text-dark fs-6 border">{f.name}</span>)
                         }
                     </div>
                     <div className="d-flex gap-3 w-100">
@@ -878,7 +878,7 @@ export default function Profile({ isMobile }) {
                         <label className="form-label">Message</label>
                         <textarea type="text" className="form-control" />
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
             </div>
 
