@@ -1762,14 +1762,14 @@ export default function CategoryOverlay() {
         <div className={style.category_overlay_container + " bg-white shadow-lg p-3 rounded "}>
             <div className="d-flex">
                 <div className={style.category_overlay_main + " "} onClick={handleCatgeoryClick} >
-                    {catgeory.map((c, i) => <div  data-index={i} role="button" className={"border-bottom py-3 text-nowrap px-2 "+(activeCategory ===i && "bg-light" )}>
+                    {catgeory.map((c, i) => <div  data-index={i} key={i} role="button" className={"border-bottom py-3 text-nowrap px-2 "+(activeCategory ===i && "bg-light" )}>
 
                         {c.name} <span><IoIosArrowForward/></span>
                     </div>)}
 
                 </div>
                 <div className={"d-flex flex-wrap gap-3 align-items-center ps-3  "+style.category_overlay_secondary}>
-                    {catgeory[activeCategory]?.subCategory?.map(sc =><div className='card p-2' role="button" >
+                    {catgeory[activeCategory]?.subCategory?.map((sc, i) =><div key={i} className='card p-2' role="button" >
                             {sc.name}
                         </div>
                     )

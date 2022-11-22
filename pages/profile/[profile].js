@@ -813,7 +813,7 @@ export default function Profile({ isMobile }) {
                     <div className={(isMobile? "h4": "h6")+" mb-3 "}>Coaching Offered</div>
                     <div className="d-flex gap-3 ">
                         {
-                            data.offerings.map(o => <div className="">
+                            data.offerings.map((o, i) => <div key={i} className="">
                                 <div className="border rounded p-3 text-truncate mb-2" style={{ borderColor: "var(--primary) !important", color: "var(--primary)" }} >
                                     {o.name}
 
@@ -824,7 +824,7 @@ export default function Profile({ isMobile }) {
                     <div className={(isMobile ? "h4":"h6" )+" mb-3  "}>Available Facilities</div>
                     <div className="d-flex flex-wrap gap-3 mb-4">
                         {
-                            data.facilities.map(f => f.available && <span class="badge rounded-pill bg-light text-dark fs-6 border">{f.name}</span>)
+                            data.facilities.map((f, i) => f.available && <span key={i} class="badge rounded-pill bg-light text-dark fs-6 border">{f.name}</span>)
                         }
                     </div>
                     <div className="d-flex gap-3 w-100">
@@ -852,7 +852,7 @@ export default function Profile({ isMobile }) {
             <div className=" bg-white p-4 mb-4 shadow d-flex gap-3 flex-column" style={gd2} >
                 <div className="h3">Faculty of {data.name}</div>
                 <div className="row gap-3">
-                    {data.faculty.map(fc => <div className="col-5 col-sm-2" ><FacultyCard  {...fc} imgSrc={fc.img} /></div>)}
+                    {data.faculty.map((fc, i) => <div key={i} className="col-5 col-sm-2" ><FacultyCard  {...fc} imgSrc={fc.img} /></div>)}
                 </div>
             </div>
 
