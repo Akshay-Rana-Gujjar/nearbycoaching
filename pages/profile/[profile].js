@@ -868,7 +868,7 @@ export default function Profile({ isMobile }) {
                     <div className="mb-3">
                         <label className="form-label">Email address</label>
                         <input type="email" className="form-control" />
-                        <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+                        <div id="emailHelp" className="form-text">We&apos;ll never share your email with anyone else.</div>
                     </div>
                     <div className="mb-3">
                         <label className="form-label">Phone Number</label>
