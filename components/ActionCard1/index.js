@@ -21,7 +21,7 @@ export default function ActionCard1({
   return (
     <div>
       <Link href={permalink}>
-        <a>
+        <>
           <div className={styles["action_card__item_container"]} style={!isMobile && {"--action-card-width": "200px"} || {}} >
             <div
               className={styles["action_card__image_container"]}
@@ -80,7 +80,7 @@ export default function ActionCard1({
               {price}
             </div>
           </div>
-        </a>
+        </>
       </Link>
     </div>
   );

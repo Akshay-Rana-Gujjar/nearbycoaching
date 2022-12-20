@@ -12,6 +12,10 @@
   display: block;
 }
 
+.navbar-search-input:focus{
+  outline: none;
+}
+
 
 /* =========== Mobile css =========== */
 @media (max-width: 500px) {

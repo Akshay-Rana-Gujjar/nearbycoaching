@@ -2,12 +2,12 @@
 import CategoryItem from "./CategoryItem";
 import styles from "./styles.module.css";
 
-export default function Categories() {
+export default function Categories({categoryList = []}) {
 
   return (
     <div className={styles.categories_container}>
-      <CategoryItem />
-      <CategoryItem
+      {categoryList.map(category=><CategoryItem {...category}/>)}
+      {/* <CategoryItem
         iconElement={
           <img
             className="img-fluid1"
@@ -29,21 +29,7 @@ export default function Categories() {
         }
         name="UPSC"
       />
-      <CategoryItem />
-      <CategoryItem />
-      <CategoryItem />
-      <CategoryItem />
-      <CategoryItem />
-      <CategoryItem />
-      <CategoryItem />
-      <CategoryItem />
-      <CategoryItem />
-      <CategoryItem />
-      <CategoryItem />
-      <CategoryItem />
-      <CategoryItem />
-      <CategoryItem />
-      <CategoryItem />
+       */}
     </div>
   );
 }

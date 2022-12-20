@@ -1,29 +1,33 @@
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 import '../styles/globals.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-// import 'bootstrap';
 import BottomNavBar from '../components/BottomNavBar'
 import '../utils/firebase';
 import useIsMobile from '../hooks/useIsMobile';
 import Footer from '../components/Footer';
+import StoreProvider from '../provider/StoreProvider';
 
 function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     require("bootstrap")
-  
+
     return () => {
-      
+
     }
   }, [])
-  
+
 
   const isMobile = useIsMobile();
 
   return <div>
-  <Component {...pageProps} isMobile={isMobile} />
-  <Footer/>
-  {isMobile && <BottomNavBar/>}
+    <StoreProvider>
+      <>
+        <Component {...pageProps} isMobile={isMobile} />
+        <Footer />
+        {isMobile && <BottomNavBar />}
+      </>
+    </StoreProvider>
   </div>
 }
 

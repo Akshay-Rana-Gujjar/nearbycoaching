@@ -1,3 +1,4 @@
+import { useContext, useEffect, useState } from "react";
 import ActionCardsContainer from "../components/ActionCardsContainer";
 import Categories from "../components/Categories";
 import FAQContainer from "../components/FAQContainer";
@@ -6,19 +7,25 @@ import Navbar from "../components/Navbar";
 import SearchBar from "../components/Search";
 import Subscription from "../components/Subscription";
 import useIsMobile from "../hooks/useIsMobile";
+import { StoreContext } from "../provider/StoreProvider";
 import styles from './styles.module.css';
 
 export default function Home() {
+  const [categoryData, setCategoryData] = useState([]);
 
   const isMobile = useIsMobile();
 
-  const bg2 = {
-    "background-color": "#FBAB7E",
-    "background-image": "linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)"
-  }
-  const bg3 = {
-    "background-color": "#8EC5FC",
-    "background-image": "linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%)"
+  const { getCategoriesCollection } = useContext(StoreContext);
+
+  useEffect(() => {
+    fetchCategory();
+  }, []);
+
+  console.log(categoryData);
+
+
+  async function fetchCategory() {
+    setCategoryData(await getCategoriesCollection());
   }
 
   return (
@@ -75,7 +82,7 @@ export default function Home() {
       }
       <div className={!isMobile && "container mb-4"}>
         <div className={!isMobile && "bg-white p-2 border border-light shadow-sm rounded"}>
-          <Categories />
+          <Categories categoryList={categoryData} />
         </div>
       </div>
       <div className="mb-2"></div>

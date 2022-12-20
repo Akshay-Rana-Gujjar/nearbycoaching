@@ -29,7 +29,7 @@ export default function Navbar() {
               </div>
               <div className={activeRoute === "/blog" && "fw-bold"}> <Link href={'/blog'} > Blog</Link></div>
               <div className="d-flex border px-2 rounded" >
-                <input type="text"  className="border-0" placeholder="search any course, institute..." />
+                <input type="text"  className={`border-0 ${styles['navbar-search-input']}`} placeholder="search any course, institute..." />
                 <div role={'button'} > <BsSearch /> </div>
               </div>
             </div>
