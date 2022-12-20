@@ -1,4 +1,4 @@
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { useState } from "react";
 import { useDB } from "../db";
 
@@ -32,9 +32,27 @@ export default function useCollection(COLLECTION) {
             setProcessing(false);
         }
     }
+
+
+    async function getCollectonByField(field, value) {
+        try {
+            setProcessing(true);
+            const _query = query(collection(db, COLLECTION), where(field,"==",value))
+            const querySnapshot = await getDocs(_query);
+            return querySnapshot.docs?.map((doc) => {
+                return { ...doc.data(), id: doc.id }
+            })
+        } catch (error) {
+            throw new Error(error);
+        } finally{
+            setProcessing(false);
+        }
+    }
+
     return {
         addToCollection,
         getCollecton,
+        getCollectonByField,
         processing
     }
 }
