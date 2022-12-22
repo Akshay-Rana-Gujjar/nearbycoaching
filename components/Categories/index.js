@@ -6,7 +6,7 @@ export default function Categories({categoryList = []}) {
 
   return (
     <div className={styles.categories_container}>
-      {categoryList.map(category=><CategoryItem {...category}/>)}
+      {categoryList.map(category=><CategoryItem key={category.id} {...category}/>)}
       {/* <CategoryItem
         iconElement={
           <img
