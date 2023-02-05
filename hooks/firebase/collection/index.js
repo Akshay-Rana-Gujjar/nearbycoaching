@@ -1,4 +1,4 @@
-import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import { addDoc, collection, getDocs, query, where, doc as Doc, getDoc } from "firebase/firestore";
 import { useState } from "react";
 import { useDB } from "../db";
 
@@ -49,10 +49,52 @@ export default function useCollection(COLLECTION) {
         }
     }
 
+    async function getDocumentsByQuery(queryList = []) {
+        try {
+            setProcessing(true);
+            const constraints = queryList.map(q=>{
+                return where(q.property, q.operator, q.value);
+            });
+            console.log({constraints});
+            const _query = query(collection(db, COLLECTION), ...constraints)
+            const querySnapshot = await getDocs(_query);
+            return querySnapshot.docs?.map((doc) => {
+                return { ...doc.data(), id: doc.id }
+            })
+        } catch (error) {
+            console.error({error})
+            throw new Error(error);
+        } finally{
+            setProcessing(false);
+        }
+    }
+
+    async function getDocument(docId) {
+        if(!docId) throw "Document id required.";
+        try {
+            setProcessing(true);
+            const docRef = Doc(db, COLLECTION, docId);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                console.log("Document data:", docSnap.data());
+                return { ...docSnap.data(), id: docSnap.id }
+            } else {
+                throw "No such document!";
+            }
+        } catch (error) {
+            throw new Error(error);
+        } finally{
+            setProcessing(false);
+        }
+    }
+
     return {
         addToCollection,
         getCollecton,
         getCollectonByField,
+        getDocument,
+        getDocumentsByQuery,
         processing
     }
 }

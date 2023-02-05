@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import Link from 'next/link';
 import { FaRupeeSign } from 'react-icons/fa';
 import { IoStar } from 'react-icons/io5';
 import styles from './styles.module.css';
@@ -9,21 +10,32 @@ export default function ActionCard2({
   classType = "Video",
   startDate = "18 Aug",
   price = "999",
-  imageSrc = "https://www.whoistheownerof.com/wp-content/uploads/2018/02/Owner-of-IDBI-Bank-India-Logo-Wiki-profile-1.jpg",
+  // imageSrc = "/default_img.jpg",
+  imageSrc = "/1.jpg",
   backdropColor = "#00836c",
+  id
 }) {
   return (
     <div className={`${styles["action_card_2_container"]} bg-white d-flex border shadow-sm overflow-hidden mb-3`}>
-      <div style={{backgroundColor: backdropColor}}  className={`${styles["action_card_2_img"]} w-50 p-4 d-flex justify-content-center align-items-center`} >
-        <img src={imageSrc} alt="a" className='img-fluid' width={"100%"}
-            height={"100%"}
-            loader={({ src }) => src}
-            layout="cover"  />
+      <div style={{backgroundColor: backdropColor}}  className={`${styles["action_card_2_img"]} w-50 p-41 d-flex justify-content-center align-items-center`} >
+        <Link href={`/course/${title.replaceAll(" ", "-")}-${id}`} style={{height: "100%", width: "100%"}} >
+          <img src={imageSrc} alt="a" className='img-fluid' width={"100%"}
+              height={"100%"}
+              loader={({ src }) => src}
+              layout="cover" 
+              style={{
+                objectFit: "cover",
+                height: "100%"
+              }}
+              />
+        </Link>
       </div>
       <div className='p-2'>
-        <div className='text-truncate fs-6 fw-bold'>
-        {title}
-        </div>
+        <Link href={`/course/${title.replaceAll(" ", "-")}-${id}`} >
+          <div className='text-truncate fs-6 fw-bold'>
+            {title}
+          </div>
+        </Link>
         <div className="d-flex justify-content-between text-muted mb-2">
             by {courseBy}
             <div className={`d-flex ${styles["action_card__item_rating"]}`}>

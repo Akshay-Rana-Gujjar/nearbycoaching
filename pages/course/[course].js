@@ -8,65 +8,28 @@ import Navbar from "../../components/Navbar";
 import styles from './styles.module.css';
 import Link from 'next/link';
 import ActionCardsContainer from '../../components/ActionCardsContainer'
+import { useEffect, useState } from "react";
+import useCourseCollection from "../../hooks/firebase/course";
 
 
 export default function Course({ isMobile }) {
     const router = useRouter();
     const { course } = router.query;
 
-    const data = [
-        {
-            title: "IDBI Bank Executive by Safalta",
-            courseBy: "Safalta",
-            classType: "Video",
-            startDate: "22 Oct, 2022",
-            price: "999",
-            imageSrc: "https://www.whoistheownerof.com/wp-content/uploads/2018/02/Owner-of-IDBI-Bank-India-Logo-Wiki-profile-1.jpg",
-            backdropColor: "#00836c",
-            permalink: "/course/idbi-bank-executive-by-safalta"
-        },
-        {
-            title: "RBI ASSISTANT PRE And MAIN VIDEO COURSE",
-            courseBy: "Make My Exam",
-            classType: "Video",
-            startDate: "22 Oct, 2022",
-            price: "3795",
-            imageSrc: "https://i0.wp.com/zeevector.com/wp-content/uploads/2021/02/RBI-Emblem-PNG.png?resize=600%2C609&ssl=1",
-            backdropColor: "#eedfc0",
-            permalink: "/course/rbi-assistant-pre-and-main-video-course"
-        },
-        {
-            title: "SBI PO - Foundation Batch 2021 By Safalta.Com",
-            courseBy: "Safalta",
-            classType: "Video",
-            startDate: "24 Nov, 2022",
-            price: "2999",
-            imageSrc: "https://i0.wp.com/www.atpos.in/wp-content/uploads/2019/08/2017-Design-Stack-new-logo-design-State-Bank-of-India.png?fit=520%2C321&ssl=1",
-            backdropColor: "#290070",
-            permalink: "/course/sbi-po-foundation-batch-2021"
-        },
-        {
-            title: "SBI SO PRE VIDEO COURSE",
-            courseBy: "Make My Exam",
-            classType: "Video",
-            startDate: "22 Oct, 2022",
-            price: "2749",
-            imageSrc: "https://i0.wp.com/www.atpos.in/wp-content/uploads/2019/08/2017-Design-Stack-new-logo-design-State-Bank-of-India.png?fit=520%2C321&ssl=1",
-            backdropColor: "#290070",
-            permalink: "/course/sbi-po-pre-video-course"
-        },
-        {
-            title: "IBPS RRB ASSISTANT PRE VIDEO COURSE",
-            courseBy: "Make My Exam",
-            classType: "Video",
-            startDate: "22 Oct, 2022",
-            price: "3795",
-            imageSrc: "https://cracku.in/latest-govt-jobs/wp-content/uploads/2019/06/IBPS-LOGO.jpg",
-            backdropColor: "#fff",
-            permalink: "/course/ibps-rrb-assistant-pre-video-course"
-        },
-    ].find(({ permalink }) => permalink === "/course/" + course) || {};
+    const [courseId] = course?.split("-").slice(-1) || [];
 
+    const [courseData, setCourseData] = useState([]);
+
+    const data = courseData || {};
+
+    const {getDocument} = useCourseCollection();
+    
+    useEffect(() => {
+      if(courseId){
+        fetchCourseById(courseId);
+      }
+    }, [courseId])
+    
 
     //slider setting
 
@@ -79,6 +42,19 @@ export default function Course({ isMobile }) {
         centerMode: true,
         arrows: !isMobile
     };
+
+    async function fetchCourseById(id){
+
+        if(!id){
+            throw "document id is mandatory."
+        }
+
+        const doc = await getDocument(id);
+        
+        console.log({doc});
+
+        setCourseData(doc);
+    }
 
     return <>
         {!isMobile && <Navbar />}
@@ -96,7 +72,7 @@ export default function Course({ isMobile }) {
                     <div className="fs-4 text-uppercase1
                  fw-bold text-muted"></div>
                 </div>}
-                {isMobile && <img style={{ backgroundColor: data.backdropColor, padding: "5px" }} src={data.imageSrc} className="img-fluid w-100" alt="" />}
+                {isMobile && <img style={{ backgroundColor: data.backdropColor, padding: "5px" }} src={data.imageSrc || "/1.jpg"} className="img-fluid w-100" alt="" />}
             </div>
             <div className="container px-2">
                 <div className={!isMobile && "d-flex justify-content-between mb-3"}>
@@ -114,13 +90,13 @@ export default function Course({ isMobile }) {
                         </div>
                         <small className={(isMobile ? "fs-5" : "fs-6") + " text-muted"}>By: <Link href={"/profile/" + data.courseBy}  ><span className="text-decoration-underline" role="button">{data.courseBy}</span></Link></small>
                         <div className="d-flex text-muted align-items-center fs-5 mb-2">
-                            Course type: <span className="fw-bold ms-2 fs-5 rounded-pill border border-danger px-3 text-white1" >{data.classType}</span>
+                            Course type: <span className="fw-bold ms-2 fs-5 rounded-pill border border-danger px-3 text-white1" >{data.courseType}</span>
                         </div>
                         <div className="d-flex text-muted align-items-center fs-5 mb-2">
                             Start from: <span className="fw-bold ms-2 fs-5 rounded-pill border border-warning px-3 text-white1" >{data.startDate}</span>
                         </div>
                     </div>
-                    {!isMobile && <img style={{ backgroundColor: data.backdropColor, padding: "5px" }} src={data.imageSrc} className="img-fluid w-25 rounded" alt="" />}
+                    {!isMobile && <img style={{ backgroundColor: data.backdropColor, padding: "5px" }} src={data.imageSrc || "/1.jpg"} className="img-fluid w-25 rounded" alt="" />}
 
                 </div>
 
@@ -135,7 +111,7 @@ export default function Course({ isMobile }) {
                 <hr />
                 <div>
                     <div className="fs-3">Course Overview</div>
-                    <div className="mb-2">This course includes Live classes, notes, doubt sessions, practice sessions, Mock Tests, and much more. It covers basic concepts as well as in-depth knowledge of all subjects required to pass the exam.</div>
+                    <div className="mb-2">{data.description}</div>
                     <div className="table-responsive">
 
                         <table className="table table-bordered  bg-white shadow-sm">

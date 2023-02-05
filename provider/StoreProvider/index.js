@@ -1,4 +1,5 @@
 import { createContext, useRef } from "react";
+import jwtDecode from "jwt-decode";
 import { CATEGORIES, COURSES } from "../../constants/storeprovider";
 import useCategoryCollection from "../../hooks/firebase/category";
 import useCourseCollection from "../../hooks/firebase/course";
@@ -12,7 +13,6 @@ export const StoreContext = createContext();
 export default ({ children }) => {
 
     const collections = useRef({});
-
     const { getCategories } = useCategoryCollection();
     const { getCourses, getCoursesByCategory: _getCoursesByCategory } = useCourseCollection();
 
@@ -72,13 +72,27 @@ export default ({ children }) => {
     async function getCoursesByCategory(){
         
     }
+    
+    function getCurrentUser(){
+        try {
+            const token = localStorage.getItem("token");
+            return jwtDecode(token);
+        } catch (error) {
+            return null;
+        }
+    }
 
+    function deleteCurrentUser(){
+        localStorage.removeItem("token");
+    }
 
 
     return <StoreContext.Provider value={{
         collections,
         getCategoriesCollection,
-        getCoursesCollection
+        getCoursesCollection,
+        getCurrentUser,
+        deleteCurrentUser
     }}  >
         {children}
     </StoreContext.Provider>

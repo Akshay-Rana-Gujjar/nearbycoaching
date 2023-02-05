@@ -7,7 +7,7 @@
 }
 
 .action_card__image_container {
-  padding: 10px;
+  /* padding: 10px; */
   background-color: #00836c;
   height: calc(var(--action-card-width)/var(--action-card-ratio));
 }

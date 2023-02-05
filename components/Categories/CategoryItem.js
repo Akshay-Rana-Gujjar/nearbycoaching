@@ -10,10 +10,11 @@ export default function CategoryItem({
   isPopular = true,
   bgColor = "gray",
   gradient: { start = "transparent", end = "transparent" } = {},
+  id: categoryId
 }) {
   const isMobile = useIsMobile()
   return (
-    <Link href={title ? "/category/" + title.toLowerCase() : null}>
+    <Link href={title ? "/category/" + title.toLowerCase()+"-"+categoryId : null}>
       <div className="d-flex flex-column justify-content-center align-items-center">
         <div
           className={

@@ -74,7 +74,7 @@ export default function Footer() {
             </div>
         </div>
             {/* <div className="mb-5">&nbsp; </div> */}
-            <div className={(isMobile && "mb-5") + " small text-center bg-dark text-muted"} >copyright &copy; 2022 | All Right Reserved | Nearbycoaching.com</div>
+            <div className={(isMobile && "mb-5") + " small text-center bg-dark text-muted"} >copyright &copy; {new Date().getFullYear()} | All Right Reserved | Nearbycoaching.com</div>
             {isMobile && <div className="mb-2"> &nbsp;</div>}
             {/* {isMobile && <div className="mb-5"> &nbsp;</div>} */}
     </>

@@ -5,7 +5,7 @@
 
 .categoryOverlay{
   display: none;
-  transform: translateX(-20vw);
+  /* transform: translateX(-20vw); */
 }
 
 .categoryOverlayParent:hover .categoryOverlay{

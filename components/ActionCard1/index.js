@@ -5,6 +5,7 @@ import { FaRupeeSign } from "react-icons/fa";
 import styles from "./styles.module.css";
 import Link from "next/link";
 import useIsMobile from '../../hooks/useIsMobile';
+import dayjs from 'dayjs'
 
 export default function ActionCard1({
   title = "IDBI Bank Executive by Safalta",
@@ -12,15 +13,15 @@ export default function ActionCard1({
   classType = "Video",
   startDate = "18 Aug",
   price = "999",
-  imageSrc = "https://www.whoistheownerof.com/wp-content/uploads/2018/02/Owner-of-IDBI-Bank-India-Logo-Wiki-profile-1.jpg",
+  imageSrc = "/1.jpg",
   backdropColor,
-  permalink = "/course/xyz",
+  id
 }) {
   const isMobile = useIsMobile();
 
   return (
     <div>
-      <Link href={permalink}>
+      <Link href={`/course/${title.replaceAll(" ", "-")}-${id}`}>
         <>
           <div className={styles["action_card__item_container"]} style={!isMobile && {"--action-card-width": "200px"} || {}} >
             <div
@@ -29,11 +30,16 @@ export default function ActionCard1({
             >
               <img
                 src={imageSrc}
-                alt="aasd"
+                alt={title}
                 width={"100%"}
                 height={"100%"}
                 loader={({ src }) => src}
                 layout="cover"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover"
+                }}
               />
             </div>
             <div className={styles["action_card__item_info_container"]}>
@@ -68,7 +74,7 @@ export default function ActionCard1({
                 <div
                   className={`${styles["action_card__course_start_by"]} rounded-pill px-1 small`}
                 >
-                  Start on {startDate}
+                  Start on {dayjs(startDate).format("DD MMM")}
                 </div>
               </div>
             </div>
