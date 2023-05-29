@@ -14,7 +14,7 @@ export default function CategoryItem({
 }) {
   const isMobile = useIsMobile()
   return (
-    <Link href={title ? "/category/" + title.toLowerCase()+"-"+categoryId : null}>
+    <Link href={title ? "/category/" + title.toLowerCase().replaceAll(" ", "-")+"-"+categoryId : null}>
       <div className="d-flex flex-column justify-content-center align-items-center">
         <div
           className={
@@ -24,7 +24,7 @@ export default function CategoryItem({
         >
           {iconElement || <BankIcon />}
         </div>
-        <div className="small text-nowrap">{title}</div>
+        <div className="small text-nowrap text-truncate" style={{maxWidth: "100px"}} >{title}</div>
       </div>
     </Link>
   );

@@ -7,12 +7,13 @@ import InstituteCard from "../../components/InstituteCard";
 import Subscription from "../../components/Subscription";
 import Navbar from "../../components/Navbar";
 import styles from "./styles.module.css";
-import { FaRupeeSign } from "react-icons/fa";
 import NotFound404 from "../../components/NotFound404";
 import { useEffect, useState } from "react";
 import useCategoryCollection from "../../hooks/firebase/category";
 import { CATEGORY_COLLECTION } from "../../constants/firebase";
 import useCourseCollection from "../../hooks/firebase/course";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export default function Category({ isMobile }) {
   const router = useRouter();
@@ -100,63 +101,17 @@ export default function Category({ isMobile }) {
             {categoryData.title}
           </div>
         </div>
-        <div className={!isMobile && "container mb-4"}>
+        {processing ? <div className="mb-3">
+            <Skeleton height={"150px"} />
+          </div> :
+          
+          <div className={!isMobile && "container mb-4"}>
           {categoryData.htmlDesc && <div
             className="bg-white shadow-sm p-2 rounded mb-3 "
             dangerouslySetInnerHTML={{
               __html: categoryData.htmlDesc,
             }}
           />}
-          {/* <div className="table-responsive">
-
-            <table className="table table-bordered  bg-white shadow-sm">
-              <thead>
-                <tr>
-
-                  <th scope="col" colSpan="3" className="text-center bg-primary1 text-white1" >Banking Details</th>
-
-                </tr>
-              </thead>
-              <tbody className="border-1">
-                <tr>
-                  <td>Course Type</td>
-                  <td>Video</td>
-                </tr>
-                <tr>
-                  <td>Category</td>
-                  <td>Banking | IDBI Bank</td>
-                </tr>
-                <tr>
-                  <td>Course Total Duration</td>
-                  <td>67 Days</td>
-
-                </tr>
-                <tr>
-                  <td>Course Total Hours</td>
-                  <td>60 hrs</td>
-
-                </tr>
-                <tr>
-                  <td>Class Total Days</td>
-                  <td>60 Days</td>
-                </tr>
-                <tr>
-                  <td>Class Timing</td>
-                  <td>-</td>
-                </tr>
-                <tr>
-                  <td>Class Strength</td>
-                  <td>50 Students</td>
-                </tr>
-                <tr>
-                  <td>Course Fee</td>
-                  <td><FaRupeeSign size={12} />
-
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div> */}
           {/* <div
             className={
               !isMobile && "bg-white p-2 border border-light shadow-sm rounded"
@@ -164,7 +119,7 @@ export default function Category({ isMobile }) {
           >
             <Categories />
           </div> */}
-        </div>
+        </div>}
         <div className="row">
           {featuredCourse.map(course=><div className="col-12 col-sm-6">
             <ActionCard2 {...course} />
@@ -191,7 +146,10 @@ export default function Category({ isMobile }) {
         </div>
 
         <div className={!isMobile && "container"}>
-          <FAQContainer />
+          {processing ? <div className="mb-3">
+            <Skeleton height={"100px"} />
+          </div> :
+          <FAQContainer  data={categoryData.faqs}/>}
           <div className="d-flex justify-content-center">
             <div className={styles["subscription_container"] + ""}>
               <Subscription />

@@ -1,4 +1,4 @@
-import { addDoc, collection, getDocs, query, where, doc as Doc, getDoc } from "firebase/firestore";
+import { addDoc, collection, getDocs, query, where, doc as Doc, getDoc, orderBy } from "firebase/firestore";
 import { useState } from "react";
 import { useDB } from "../db";
 
@@ -49,14 +49,17 @@ export default function useCollection(COLLECTION) {
         }
     }
 
-    async function getDocumentsByQuery(queryList = []) {
+    async function getDocumentsByQuery(queryList = [], $orderBy) {
         try {
             setProcessing(true);
             const constraints = queryList.map(q=>{
                 return where(q.property, q.operator, q.value);
             });
+            if($orderBy){
+                constraints.push(orderBy($orderBy));
+            }
             console.log({constraints});
-            const _query = query(collection(db, COLLECTION), ...constraints)
+            const _query = query(collection(db, COLLECTION), ...constraints);
             const querySnapshot = await getDocs(_query);
             return querySnapshot.docs?.map((doc) => {
                 return { ...doc.data(), id: doc.id }

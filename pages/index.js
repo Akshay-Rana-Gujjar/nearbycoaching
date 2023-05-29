@@ -12,6 +12,7 @@ import { StoreContext } from "../provider/StoreProvider";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import styles from "./styles.module.css";
+import useCategoryCollection from "../hooks/firebase/category";
 
 export default function Home() {
   const [categoryData, setCategoryData] = useState([]);
@@ -20,7 +21,7 @@ export default function Home() {
 
   const isMobile = useIsMobile();
 
-  const { getCategoriesCollection } = useContext(StoreContext);
+  const { getCategoryByField, getDocumentsByQuery: getCategoriesByQuery } = useCategoryCollection();
 
   const { getDocumentsByQuery } = useCourseCollection();
 
@@ -29,7 +30,7 @@ export default function Home() {
   }, []);
 
   async function fetchCategory() {
-    const _categoryData = await getCategoriesCollection();
+    const _categoryData = await getCategoriesByQuery([{property: "isParentCategory",operator: "==", value:  true}], "title");
     setCategoryData(_categoryData);
     const featuredCategoryData = _categoryData.filter((item) => {
       return item.featureAtHome;
@@ -98,7 +99,7 @@ export default function Home() {
             <div className={!isMobile && "container"}>
               <ActionCardsContainer
                 carditems={featuredCourse[itemData.title]}
-                exploreMoreLink={`/category/${itemData?.title?.replaceAll(
+                exploreMoreLink={`/category/${itemData?.title?.toLowerCase().replaceAll(
                   " ",
                   "-"
                 )}-${itemData.id}`}

@@ -4,8 +4,10 @@ import { BsSearch } from "react-icons/bs";
 import { IoMenu, IoNotificationsOutline } from "react-icons/io5";
 import styles from "./styles.module.css";
 import CategoryOverlay from "../CategoryOverlay";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { StoreContext } from "../../provider/StoreProvider";
+import SearchBar from "../Search";
+import search from "../../api/search";
 
 export default function Navbar() {
   const router = useRouter();
@@ -15,6 +17,8 @@ export default function Navbar() {
   const { getCurrentUser, deleteCurrentUser } = useContext(StoreContext);
 
   const [userInputData, setUserInputData] = useState({});
+  const [searchSuggestionList, setSearchSuggestionList] = useState([]);
+  const navBarRef = useRef(null);
 
   console.log({ env });
 
@@ -23,6 +27,8 @@ export default function Navbar() {
   const [showPopup, setShowPopup] = useState(false);
 
   const [currentUser, setCurrentUser] = useState(null);
+
+  const [shouldFixedNabvar, setShouldFixedNabvar] = useState(false);
 
   function handleInputChange(e) {
     const { name, value } = e.target;
@@ -113,14 +119,25 @@ export default function Navbar() {
 
   console.log({ currentUser });
 
+  async function handleSearch(e){
+    const {value} = e.target;
+    if(value?.length < 2) return setSearchSuggestionList([]);
+    const {data: searchResult} = await search(value);
+    console.log({searchResult});
+    setSearchSuggestionList(searchResult);
+  }
+
   useEffect(() => {
     setCurrentUser(getCurrentUser());
+    window.onscroll = function(){
+        setShouldFixedNabvar(navBarRef.current && scrollY > parseInt(getComputedStyle(navBarRef.current).height));
+    }
   }, []);
 
   return (
     <>
       <div>
-        <div className="bg-white shadow mb-31">
+        <div className={"bg-white shadow mb-31 "+(shouldFixedNabvar && "position-fixed start-0 end-0 ")} style={{zIndex: 10}} ref={navBarRef}>
           <div className="container  d-md-flex d-none justify-content-start gap-5 align-items-center p-3">
             <div className="navbar__welcome-text h3">
               <Link href="/">NearbyCoaching</Link>
@@ -139,6 +156,10 @@ export default function Navbar() {
                     <BsSearch />{" "}
                   </div>
                 </div> */}
+                <div className="d-flex" style={{"width": "500px"}}>
+                  {/* <input type="text" className="form-cntrol w-100" placeholder="search any course, institute..." onChange={handleSearch} /> */}
+                  <SearchBar onChange={handleSearch} suggestionsList={searchSuggestionList} />
+                </div>
                 <div className={activeRoute === "/" && "fw-bold"}>
                   {" "}
                   <Link href={"/"}> Home</Link>
@@ -155,7 +176,7 @@ export default function Navbar() {
                   <Link href={"#"}> Categories</Link>
                   <div
                     className={
-                      "position-absolute translate-middle-x " +
+                      "position-absolute translate-middle-x1 " +
                       styles.categoryOverlay
                     }
                     style={{ zIndex: 100 }}
@@ -181,6 +202,7 @@ export default function Navbar() {
                     Logout
                   </div>
                 )}
+                
               </div>
             </div>
           </div>
